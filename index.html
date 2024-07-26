@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+
+<head>
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no" /> -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/ion-rangeslider@2.2.0/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="https://unpkg.com/ion-rangeslider@2.2.0/css/ion.rangeSlider.skinNice.css" />
+	<link rel="stylesheet" href="dist/leaflet.css" />
+	<link rel="stylesheet" href="dist/leaflet-panel-layers.css" />
+	<!-- <link rel="stylesheet" href="src/L.Control.HtmlLegend.css" /> -->
+	<link rel="stylesheet" href="dist/leaflet-search.css" />
+
+
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+	<script src="dist/leaflet-panel-layers.src.js"></script>
+	<script src="dist/leaflet-panel-layers.js"></script>
+	<!-- <script src="js/L.Control.Appearance.js"></script> -->
+	<script src="dist/jquery-3.5.1.js"></script>
+	<!-- <script src="src/L.Control.HtmlLegend.js"></script> -->
+	<script src="dist/leaflet-search.js"></script>
+
+	<!-- link para marker cluster  
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin="" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.Default.css" />
+
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" crossorigin=""></script>
+	<script src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js"></script> -->
+
+	<script src="dist/leaflet-panel-layers.src.js"></script>
+	<script src="dist/leaflet-panel-layers.js"></script>
+	<!-- <script src="js/L.Control.Appearance.js"></script> -->
+	<script src="dist/jquery-3.5.1.js"></script>
+	<!-- <script src="src/L.Control.HtmlLegend.js"></script> -->
+	<script src="dist/leaflet-search.js"></script>
+
+
+	<!-- full screen-->
+	<script src="dist/Control.FullScreen.js"></script>
+	<!-- geolocalizacion-->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script> -->
+	<link rel="stylesheet" href="dist/L.Control.Locate.css" />
+	<script src="dist/L.Control.Locate.js"></script>
+	<script src="dist/L.Control.Locate.min.js"></script>
+
+
+	<!-- en la Carpeta DATA estan los js como capas-->
+	<script type="text/javascript" src="data/barrio3.js"></script>
+	<script type="text/javascript" src="data/catastros_almudena_DGI.js"></script>
+	<script type="text/javascript" src="data/baldios_construidos.js"></script>
+	<script type="text/javascript" src="data/zonas_tgi.js"></script>
+	<script type="text/javascript" src="data/zonas_II.js"></script>
+	
+	
+
+
+	<style>
+		html,
+		body {
+			height: 100%;
+			box-shadow: 5px 5px 5px #888;
+		}
+
+		#map {
+			height: 95%;
+			box-shadow: 5px 5px 5px #888;
+		}
+
+		.info {
+			padding: 5px 5px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: white;
+			background: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+
+		.info h2 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+
+		.leaflet-tooltip.my-labels {
+			background-color: transparent;
+			border: transparent;
+			box-shadow: none;
+		}
+
+		.Label {
+			background: rgba(223, 223, 223, 0);
+			border: 0px;
+			border-radius: 0px;
+			box-shadow: 0 0px 0px;
+			font: 14px/16px bold, large, Arial, Helvetica;
+		}
+
+
+		/* fullscreen */
+		.fullscreen-icon {
+			background-image: url(images/icon-fullscreen.png);
+		}
+
+		.leaflet-retina .fullscreen-icon {
+			background-image: url(images/icon-fullscreen-2x.png);
+			background-size: 26px 26px;
+		}
+
+
+
+		.leaflet-container:-ms-fullscreen {
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 99999;
+		}
+
+		.leaflet-container:full-screen {
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 99999;
+		}
+
+		.leaflet-container:fullscreen {
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 99999;
+		}
+
+		.leaflet-pseudo-fullscreen {
+			position: fixed !important;
+			width: 100% !important;
+			height: 100% !important;
+			top: 0px !important;
+			left: 0px !important;
+			z-index: 99999;
+		}
+
+		/* Estilos CSS para la leyenda */
+		.info.legend {
+			background: white;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 12px;
+		}
+
+		/* Estilos para los círculos de colores en la leyenda */
+		.info.legend i {
+			width: 10px;
+			height: 10px;
+			display: inline-block;
+			border-radius: 50%;
+			margin-right: 5px;
+		}
+
+		/* remove label background elements */
+		.leaflet-tooltip.my-labels {
+			background-color: transparent;
+			border: transparent;
+			box-shadow: none;
+			font-weight: bold;
+			font-size: 30px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="map"></div>
+	<script>
+		var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+
+		});
+
+		var google = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+			opacity: 1.0,
+			attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>',attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+
+		});
+
+		var argenmap = L.tileLayer(
+			'https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+			opacity: 1.0,
+			attribution: '<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2"  target="_blank"> ArgenMap </a>',
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+
+		});
+		//VARIABLES //
+		var mosaico = L.tileLayer.wms("http://geo.municipalidadsalta.gob.ar:8080/geoserver/wms", {
+			active: true,
+			layers: 'public:07_Catastros_Abr24',
+		
+			format: 'image/png',
+			transparent: true,
+			opacity: 0.9,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+
+		var barrio = L.geoJson(barrio, {
+			style: styleBarrio,
+			// onEachFeature: barrios_pop,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>'
+		});
+
+		var catastrosDGIOrg = L.geoJson(catastrosDGI, {
+			onEachFeature:  function (feature, layer) {
+				var popupContent = popsCatastro(feature);
+				layer.bindPopup(popupContent);
+			},
+			style: styleCatastros,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+
+		});
+
+		var baldios = L.geoJson(baldiosConstruidos, {
+			onEachFeature:  function (feature, layer) {
+				var popupContent = popsBaldioConstruido(feature);
+				layer.bindPopup(popupContent);
+			},
+			style: styleBaldios,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+
+		});
+
+		var ZonaTGI = L.geoJson(TGI);
+		var ZonaII = L.geoJson(II);
+
+		//mapa//
+		var map = L.map('map', {
+			center: [-24.76228, -65.46478],
+			zoom: 12,
+			zoomControl: false,
+			layers: [argenmap, ]
+
+		});
+
+		// Grupos de capas
+		var baseLayers = [{
+			name: "ArgenMap (Gris)",
+			layer: argenmap
+		},
+		{
+			name: "Open Street Map",
+			layer: osm,
+		},
+		{
+			name: "Google Satelite",
+			layer: google
+		},
+		];
+
+		var overlayMaps = [{
+			layer: barrio,
+			name: "<b>Barrios de la Ciudad",
+			transparent: true,
+			opacity: 0.5,
+		},
+		{
+			layer: baldios,
+			name: "<b> Baldios Construidos",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+
+		},
+		{
+			layer: mosaico,
+			name: "<b> Catastros WMS",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+
+		},
+		{
+			layer: ZonaTGI,
+			name: "<b> Zonificación TGI",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+
+		},
+		{
+			layer: ZonaII,
+			name: "<b> Zonificación II",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+
+		}
+
+		];
+
+
+		//panel de control agregado//
+		var panelLayersBase = new L.Control.PanelLayers(baseLayers, null, {
+			compact: true,
+			//collapsed: true,
+			collapsibleGroups: false,
+			position: 'topleft',
+		});
+		
+		//panel de control agregado//
+		var panelLayers = new L.Control.PanelLayers(null, overlayMaps, {
+			compact: true,
+			//collapsed: true,
+			collapsibleGroups: false,
+			position: 'topleft',
+		});
+
+		// logo
+		L.Control.Watermark = L.Control.extend({
+			onAdd: function (map) {
+				var img = L.DomUtil.create('img');
+				img.src = 'images/Logo Azul Principal.png';
+				img.style.width = '20vw',
+					img.style.height = 'auto';
+				return img;
+			},
+			onRemove: function (map) { },
+		});
+		L.control.watermark = function (opts) {return new L.Control.Watermark(opts);}
+		L.control.watermark(position = 'topleft').addTo(map);
+		
+	
+		map.addControl(panelLayersBase);
+		map.addControl(panelLayers);
+
+			//fullsrcreen
+			var fullscreen = L.control.fullscreen({
+			fullscreenControl: true,
+			fullscreenControlOptions: {
+				title: "Mostrar en pantalla completa",
+				titleCancel: "Cancelar el modo pantalla completa",
+			 position: 'topleft',
+			}
+		}).addTo(map);
+
+		
+
+		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
+		L.control.zoom({ position: 'topright' }).addTo(map);
+
+				//leyenda al mapa
+createLegend();
+	</script>
+</body>
+
+</html>
