@@ -59,10 +59,10 @@
 	<script type="text/javascript" src="data/baldios_construidos.js"></script>
 	<script type="text/javascript" src="data/zonas_tgi.js"></script>
 	<script type="text/javascript" src="data/zonas_II.js"></script>
+	<script type="text/javascript" src="data/ejes.js"></script>
+	<script type="text/javascript" src="data/styleCOD.js"></script>
 	
 	
-
-
 	<style>
 		html,
 		body {
@@ -235,6 +235,21 @@
 		var ZonaTGI = L.geoJson(TGI);
 		var ZonaII = L.geoJson(II);
 
+		var EjesCalles = L.geoJson(ejes, {
+			style: styleCalles,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+		var EjesRecoleccion = L.geoJson(ejes, {
+			style: styleRecol,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+
+		var EjesBarrido = L.geoJson(ejes, {
+			style: styleBarrido,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+		
+
 		//mapa//
 		var map = L.map('map', {
 			center: [-24.76228, -65.46478],
@@ -296,7 +311,30 @@
 			opacity: 0.9,
 			active: false,
 
-		}
+		},
+		{
+			layer: EjesCalles,
+			name: "<b> Ejes de calles",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+			},
+
+			{
+				layer: EjesRecoleccion,
+				name: "<b> Recolección",
+				transparent: true,
+				opacity: 0.9,
+				active: false,
+				},
+
+				{
+					layer: EjesBarrido,
+					name: "<b> Barridos",
+					transparent: true,
+					opacity: 0.9,
+					active: false,
+					}
 
 		];
 
@@ -352,6 +390,9 @@
 
 				//leyenda al mapa
 createLegend();
+createLegendCalles();
+createLegendRecol();
+createLegendBarrido();
 	</script>
 </body>
 

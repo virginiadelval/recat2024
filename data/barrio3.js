@@ -31,11 +31,8 @@
 				color: 'white',
 				dashArray: '0',
 				fillOpacity: 0.5,
-
 			}
 		};
-
-
 
 
 var barrio = {
