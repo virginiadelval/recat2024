@@ -55,14 +55,14 @@
 
 	<!-- en la Carpeta DATA estan los js como capas-->
 	<script type="text/javascript" src="data/barrio3.js"></script>
-	<script type="text/javascript" src="data/catastros_almudena_DGI.js"></script>
-	<script type="text/javascript" src="data/baldios_construidos.js"></script>
+	
+	
 	<script type="text/javascript" src="data/zonas_tgi.js"></script>
 	<script type="text/javascript" src="data/zonas_II.js"></script>
 	<script type="text/javascript" src="data/ejes.js"></script>
 	<script type="text/javascript" src="data/styleCOD.js"></script>
-	
-	
+
+
 	<style>
 		html,
 		body {
@@ -184,7 +184,7 @@
 
 		var google = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 			opacity: 1.0,
-			attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>',attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+			attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>', attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 
 		});
 
@@ -196,43 +196,15 @@
 
 		});
 		//VARIABLES //
-		var mosaico = L.tileLayer.wms("http://geo.municipalidadsalta.gob.ar:8080/geoserver/wms", {
-			active: true,
-			layers: 'public:07_Catastros_Abr24',
-		
-			format: 'image/png',
-			transparent: true,
-			opacity: 0.9,
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
-		});
-
 		var barrio = L.geoJson(barrio, {
 			style: styleBarrio,
 			// onEachFeature: barrios_pop,
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>'
 		});
-
-		var catastrosDGIOrg = L.geoJson(catastrosDGI, {
-			onEachFeature:  function (feature, layer) {
-				var popupContent = popsCatastro(feature);
-				layer.bindPopup(popupContent);
-			},
-			style: styleCatastros,
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
-
+		var ZonaTGI = L.geoJson(TGI, {
+			style: styleTGI
 		});
 
-		var baldios = L.geoJson(baldiosConstruidos, {
-			onEachFeature:  function (feature, layer) {
-				var popupContent = popsBaldioConstruido(feature);
-				layer.bindPopup(popupContent);
-			},
-			style: styleBaldios,
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
-
-		});
-
-		var ZonaTGI = L.geoJson(TGI);
 		var ZonaII = L.geoJson(II);
 
 		var EjesCalles = L.geoJson(ejes, {
@@ -248,6 +220,23 @@
 			style: styleBarrido,
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 		});
+
+		var EjesLusal = L.geoJson(ejes, {
+			style: styleLusal,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+		var EjesSEV = L.geoJson(ejes, {
+			style: styleSEV,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+		var EjesSEMAF = L.geoJson(ejes, {
+			style: styleSEMAF,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
+		var EjesCODLINK = L.geoJson(ejes, {
+			style: styleLINK,
+			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		});
 		
 
 		//mapa//
@@ -255,7 +244,7 @@
 			center: [-24.76228, -65.46478],
 			zoom: 12,
 			zoomControl: false,
-			layers: [argenmap, ]
+			layers: [argenmap,]
 
 		});
 
@@ -281,22 +270,6 @@
 			opacity: 0.5,
 		},
 		{
-			layer: baldios,
-			name: "<b> Baldios Construidos",
-			transparent: true,
-			opacity: 0.9,
-			active: false,
-
-		},
-		{
-			layer: mosaico,
-			name: "<b> Catastros WMS",
-			transparent: true,
-			opacity: 0.9,
-			active: false,
-
-		},
-		{
 			layer: ZonaTGI,
 			name: "<b> Zonificación TGI",
 			transparent: true,
@@ -318,26 +291,51 @@
 			transparent: true,
 			opacity: 0.9,
 			active: false,
-			},
-
-			{
-				layer: EjesRecoleccion,
-				name: "<b> Recolección",
-				transparent: true,
-				opacity: 0.9,
-				active: false,
-				},
-
-				{
-					layer: EjesBarrido,
-					name: "<b> Barridos",
-					transparent: true,
-					opacity: 0.9,
-					active: false,
-					}
+		},
+		{
+			layer: EjesRecoleccion,
+			name: "<b> Recolección",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesBarrido,
+			name: "<b> Barridos",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesLusal,
+			name: "<b> Luminarias",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesSEV,
+			name: "<b> Servicio en <br>Espacios verdes",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesSEMAF,
+			name: "<b> Semáforo",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesCODLINK,
+			name: "<b> Indicador",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		}
 
 		];
-
 
 		//panel de control agregado//
 		var panelLayersBase = new L.Control.PanelLayers(baseLayers, null, {
@@ -346,7 +344,7 @@
 			collapsibleGroups: false,
 			position: 'topleft',
 		});
-		
+
 		//panel de control agregado//
 		var panelLayers = new L.Control.PanelLayers(null, overlayMaps, {
 			compact: true,
@@ -366,33 +364,31 @@
 			},
 			onRemove: function (map) { },
 		});
-		L.control.watermark = function (opts) {return new L.Control.Watermark(opts);}
+		L.control.watermark = function (opts) { return new L.Control.Watermark(opts); }
 		L.control.watermark(position = 'topleft').addTo(map);
-		
-	
 		map.addControl(panelLayersBase);
 		map.addControl(panelLayers);
-
-			//fullsrcreen
-			var fullscreen = L.control.fullscreen({
+		//fullsrcreen
+		var fullscreen = L.control.fullscreen({
 			fullscreenControl: true,
 			fullscreenControlOptions: {
 				title: "Mostrar en pantalla completa",
 				titleCancel: "Cancelar el modo pantalla completa",
-			 position: 'topleft',
+				position: 'topright',
 			}
 		}).addTo(map);
-
-		
-
 		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
 		L.control.zoom({ position: 'topright' }).addTo(map);
 
-				//leyenda al mapa
-createLegend();
-createLegendCalles();
-createLegendRecol();
-createLegendBarrido();
+		//leyenda al mapa
+		createLegendTGI();
+		createLegendCalles();
+		createLegendRecol();
+		createLegendBarrido();
+		createLegendLusal();
+		createLegendSEV();
+		createLegendSEMAF();
+		createLegendLINK();
 	</script>
 </body>
 
