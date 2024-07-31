@@ -277,7 +277,7 @@ function getColorSEV(COD_SEV) {
     case 50:
       return { color: "#BD1F95", weight: 2 };
     case 51:
-      return { color: "#4E6D4F", weight: 1 };
+      return { color: "#6B6E6B", weight: 1 };
     default:
       return { color: "black", weight: 1 }; // Estilo por defecto
   }
@@ -304,7 +304,7 @@ function createLegendSEV() {
     var styles = [
       { label: "Serv. Espacios verdes", color: "" },
       { label: "Con servicio", color: "#BD1F95" },
-      { label: "Sin servicio", color: "#4E6D4F" },
+      { label: "Sin servicio", color: "#6B6E6B" },
     ];
 
     // Genera el contenido HTML de la leyenda
