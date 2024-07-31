@@ -396,177 +396,181 @@ function createLegendSEMAF() {
 }
 
 // //Codigo link : COD_LINK - indicarod
-function getColorLINK(COD_LINK) {
-  switch (COD_LINK) {
-    default:
-      const min = 102030405060, max = 122334425161;
-      if (COD_LINK < min || COD_LINK > max) 
-        return { color: "black", weight: 1 };
-      const interpolate = (c1, c2, f) => c1.map((c, i) => Math.round(c + f * (c2[i] - c)));
-      const rgbToHex = rgb => "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("");
-      const start = [255, 0, 0], end = [0, 255, 0], f = (COD_LINK - min) / (max - min);
-      return { color: rgbToHex(interpolate(start, end, f)), weight: 2 };
-  }
-}
+// function getColorLINK(COD_LINK) {
+//   switch (COD_LINK) {
+//     default:
+//       const min = 102030405060, max = 122334425161;
+//       if (COD_LINK < min || COD_LINK > max) 
+//         return { color: "black", weight: 1 };
+//       const interpolate = (c1, c2, f) => c1.map((c, i) => Math.round(c + f * (c2[i] - c)));
+//       const rgbToHex = rgb => "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("");
+//       const start = [255, 0, 0], end = [0, 255, 0], f = (COD_LINK - min) / (max - min);
+//       return { color: rgbToHex(interpolate(start, end, f)), weight: 2 };
+//   }
+// }
 
-// function getColorLINK(COD_LINK) {  
-//   const min = 102030405060;  
-//   const max = 122334425161;  
+function getColorLINK(COD_LINK) {  
+  const min = 102030405060;  
+  const max = 122334425161;  
 
-  // Comprobar si COD_LINK está fuera del rango  
-//   if (COD_LINK < min || COD_LINK > max) {  
-//     return { color: "black", weight: 1 };  
-//   }  
+  //Comprobar si COD_LINK está fuera del rango  
+  if (COD_LINK < min || COD_LINK > max) {  
+    return { color: "black", weight: 1 };  
+  }  
 
-//   // Definir los colores para cada rango  
-//   const colors = [  
-//     [255, 0, 0],
-//     [255, 25, 0],
-//     [255, 51, 0],
-//     [255, 76, 0],
-//     [255, 102, 0],
-//     [255, 127, 0],
-//     [255, 153, 0],
-//     [255, 178, 0],
-//     [255, 204, 0],
-//     [255, 229, 0],
-//     [255, 255, 0],
-//     [229, 255, 0],
-//     [204, 255, 0],
-//     [178, 255, 0],
-//     [153, 255, 0],
-//     [127, 255, 0],
-//     [102, 255, 0],
+  // Definir los colores para cada rango  
+  const colors = [  
+    [255, 0, 0],
+    [255, 25, 0],
+    [255, 51, 0],
+    [255, 76, 0],
+    [255, 102, 0],
+    [255, 127, 0],
+    [255, 153, 0],
+    [255, 178, 0],
+    [255, 204, 0],
+    [255, 229, 0],
+    [255, 255, 0],
+    [229, 255, 0],
+    [204, 255, 0],
+    [178, 255, 0],
+    [153, 255, 0],
+    [127, 255, 0],
+    [102, 255, 0],
+    
+    [102, 0, 255],
+    [127, 0, 255],
+    [153, 0, 255],
+    [178, 0, 255],
+    [204, 0, 255],
+    [229, 0, 255],
+    [255, 0, 255],
+    [255, 0, 229],
+    [255, 0, 204],
+    [255, 0, 178],
+    [255, 0, 153],
+    [255, 0, 127],
+    [255, 0, 102],
 
-//     [255, 153, 153],
-//     [255, 182, 153],
-//     [255, 204, 153],
-//     [255, 255, 153],
-//     [255, 255, 153],
-//     [204, 255, 153],
-//     [153, 255, 153],
-//     [153, 255, 204],
-//     [153, 255, 255],
-//     [153, 204, 255],
-//     [153, 153, 255],
-//     [182, 153, 255],
-//     [204, 153, 255],
-//     [255, 153, 204],
-//     [255, 204, 204],
+    [255, 153, 153],
+    [255, 182, 153],
+    [255, 204, 153],
+    [255, 255, 153],
+    [255, 255, 153],
+    [204, 255, 153],
+    [153, 255, 153],
+    [153, 255, 204],
+    [153, 255, 255],
+    [153, 204, 255],
+    [153, 153, 255],
+    [182, 153, 255],
+    [204, 153, 255],
+    [255, 153, 204],
+    [255, 204, 204],
     
 
 
 
-//     [76, 255, 0],
-//     [51, 255, 0],
-//     [25, 255, 0],
-//     [0, 255, 0],
-//     [0, 255, 25],
-//     [0, 255, 51],
-//     [0, 255, 76],
-//     [0, 255, 102],
-//     [0, 255, 127],
-//     [0, 255, 153],
-//     [0, 255, 178],
-//     [0, 255, 204],
-//     [0, 255, 229],
-//     [0, 255, 255],
-//     [0, 229, 255],
-//     [0, 204, 255],
-//     [0, 178, 255],
-//     [0, 153, 255],
-//     [0, 127, 255],
-//     [0, 102, 255],
-//     [0, 76, 255],
-//     [0, 51, 255],
-//     [0, 25, 255],
-//     [0, 0, 255],
-//     [25, 0, 255],
-//     [51, 0, 255],
-//     [76, 0, 255],
-//     [102, 0, 255],
-//     [127, 0, 255],
-//     [153, 0, 255],
-//     [178, 0, 255],
-//     [204, 0, 255],
-//     [229, 0, 255],
-//     [255, 0, 255],
-//     [255, 0, 229],
-//     [255, 0, 204],
-//     [255, 0, 178],
-//     [255, 0, 153],
-//     [255, 0, 127],
-//     [255, 0, 102],
-//     [255, 0, 76],
-//     [255, 0, 51],
-//     [255, 0, 25],
-//     [255, 0, 0],
-//     [239, 0, 0],
-//     [218, 0, 0],
-//     [196, 0, 0],
-//     [173, 0, 0],
-//     [153, 0, 0],
-//     [127, 0, 0],
-//     [102, 0, 0],
-//     [76, 0, 0],
-//     [51, 0, 0],
-//     [25, 0, 0],
-//     [0, 25, 0],
-//     [0, 51, 0],
-//     [0, 76, 0],
-//     [0, 102, 0],
-//     [0, 127, 0],
-//     [0, 153, 0],
-//     [0, 178, 0],
-//     [0, 204, 0],
-//     [0, 229, 0],
-//     [0, 255, 0],
-//     [0, 255, 25],
-//     [0, 255, 51],
-//     [0, 255, 76],
-//     [0, 255, 102],
-//     [0, 255, 127],
-//     [0, 255, 153],
-//     [0, 255, 178],
-//     [0, 255, 204],
-//     [0, 255, 229],
-//     [0, 255, 255],
-//     [0, 204, 255],
-//     [0, 178, 255],
-//     [0, 153, 255],
-//     [0, 127, 255],
-//     [0, 102, 255],
-//     [0, 76, 255],
-//     [0, 51, 255],
-//     [0, 25, 255],
-//     [0, 0, 255],
+    [76, 255, 0],
+    [51, 255, 0],
+    [25, 255, 0],
+    [0, 255, 0],
+    [0, 255, 25],
+    [0, 255, 51],
+    [0, 255, 76],
+    [0, 255, 102],
+    [0, 255, 127],
+    [0, 255, 153],
+    [0, 255, 178],
+    [0, 255, 204],
+    [0, 255, 229],
+    [0, 255, 255],
+    [0, 229, 255],
+    [0, 204, 255],
+    [0, 178, 255],
+    [0, 153, 255],
+    [0, 127, 255],
+    [0, 102, 255],
+    [0, 76, 255],
+    [0, 51, 255],
+    [0, 25, 255],
+    [0, 0, 255],
+    [25, 0, 255],
+    [51, 0, 255],
+    [76, 0, 255],
+  
+    [255, 0, 76],
+    [255, 0, 51],
+    [255, 0, 25],
+    [255, 0, 0],
+    [239, 0, 0],
+    [218, 0, 0],
+    [196, 0, 0],
+    [173, 0, 0],
+    [153, 0, 0],
+    [127, 0, 0],
+    [102, 0, 0],
+    [76, 0, 0],
+    [51, 0, 0],
+    [25, 0, 0],
+    [0, 25, 0],
+    [0, 51, 0],
+    [0, 76, 0],
+    [0, 102, 0],
+    [0, 127, 0],
+    [0, 153, 0],
+    [0, 178, 0],
+    [0, 204, 0],
+    [0, 229, 0],
+    [0, 255, 0],
+
+
+    [0, 255, 25],
+    [0, 255, 51],
+    [0, 255, 76],
+    [0, 255, 102],
+    [0, 255, 127],
+    [0, 255, 153],
+    [0, 255, 178],
+    [0, 255, 204],
+    [0, 255, 229],
+    [0, 255, 255],
+    [0, 204, 255],
+    [0, 178, 255],
+    [0, 153, 255],
+    [0, 127, 255],
+    [0, 102, 255],
+    [0, 76, 255],
+    [0, 51, 255],
+    [0, 25, 255],
+    [0, 0, 255],
     
         
-//   ];  
+  ];  
 
-//   // Calcular el rango de cada color  
-//   const step = (max - min) / (colors.length - 1);  
+  // Calcular el rango de cada color  
+  const step = (max - min) / (colors.length - 1);  
 
-//   // Determinar en qué rango se encuentra COD_LINK  
-//   const index = Math.floor((COD_LINK - min) / step);  
+  // Determinar en qué rango se encuentra COD_LINK  
+  const index = Math.floor((COD_LINK - min) / step);  
 
-//   // Asegúrate de que el índice no exceda el total de colores  
-//   const nextIndex = Math.min(index + 1, colors.length - 1);  
+  // Asegúrate de que el índice no exceda el total de colores  
+  const nextIndex = Math.min(index + 1, colors.length - 1);  
 
-//   // Calcular el factor de interpolación  
-//   const f = (COD_LINK - (min + index * step)) / step;  
+  // Calcular el factor de interpolación  
+  const f = (COD_LINK - (min + index * step)) / step;  
 
-//   // Definir la función de interpolación  
-//   const interpolate = (c1, c2, f) => c1.map((c, i) => Math.round(c + f * (c2[i] - c)));  
+  // Definir la función de interpolación  
+  const interpolate = (c1, c2, f) => c1.map((c, i) => Math.round(c + f * (c2[i] - c)));  
 
-//   // Obtener el color interpolado  
-//   const color = interpolate(colors[index], colors[nextIndex], f);  
+  // Obtener el color interpolado  
+  const color = interpolate(colors[index], colors[nextIndex], f);  
   
-//   // Función para convertir RGB a formato hexadecimal  
-//   const rgbToHex = rgb => "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("");  
+  // Función para convertir RGB a formato hexadecimal  
+  const rgbToHex = rgb => "#" + rgb.map(x => x.toString(16).padStart(2, "0")).join("");  
 
-//   return { color: rgbToHex(color), weight: 2 };  
-// }  
+  return { color: rgbToHex(color), weight: 2 };  
+}  
 
 // // Ejemplo de uso  
 // console.log(getColorLINK(110000000000)); // Cambia el valor para probar diferentes resultados
@@ -584,11 +588,11 @@ function createLegendLINK() {
     
     // Array con los estilos y sus etiquetas correspondientes
     var styles = [
-      { label: "Categorias Indicador", color: "linear-gradient(to right, red, green)" },
+      { label: "Categorias Indicador", color: "linear-gradient(to right, red, green, blue)" },
       
     ];
 
-    // Genera el contenido HTML de la leyenda
+    // Genera el contenido HTML de la leyendag
     styles.forEach(function (style) {
       if (style.label === "Categorias Indicador") {
         labels.push(
