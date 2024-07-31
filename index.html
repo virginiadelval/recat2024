@@ -205,7 +205,10 @@
 			style: styleTGI
 		});
 
-		var ZonaII = L.geoJson(II);
+		var ZonaII = L.geoJson(II, {
+			style: styleII
+		}
+		);
 
 		var EjesCalles = L.geoJson(ejes, {
 			style: styleCalles,
@@ -241,7 +244,7 @@
 
 		//mapa//
 		var map = L.map('map', {
-			center: [-24.76228, -65.46478],
+			center: [-24.790195501692253, -65.42084230775552],
 			zoom: 12,
 			zoomControl: false,
 			layers: [argenmap,]
@@ -382,6 +385,7 @@
 
 		//leyenda al mapa
 		createLegendTGI();
+		createLegendII();
 		createLegendCalles();
 		createLegendRecol();
 		createLegendBarrido();
