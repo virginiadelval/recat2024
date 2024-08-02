@@ -60,7 +60,9 @@
 	<script type="text/javascript" src="data/zonas_tgi.js"></script>
 	<script type="text/javascript" src="data/zonas_II.js"></script>
 	<script type="text/javascript" src="data/ejes.js"></script>
+	<!-- <script type="text/javascript" src="data/cat_ds.js"></script> -->
 	<script type="text/javascript" src="data/styleCOD.js"></script>
+	<script type="text/javascript" src="data/mono.js"></script>
 
 
 	<style>
@@ -236,8 +238,8 @@
 			style: styleSEMAF,
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 		});
-		var EjesCODLINK = L.geoJson(ejes, {
-			style: styleLINK,
+		var EjesCategoria = L.geoJson(categoria, {
+			style: styleCategoria,
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 		});
 		
@@ -331,8 +333,8 @@
 			active: false,
 		},
 		{
-			layer: EjesCODLINK,
-			name: "<b> Indicador",
+			layer: EjesCategoria,
+			name: "<b> Categorias",
 			transparent: true,
 			opacity: 0.9,
 			active: false,
@@ -392,7 +394,7 @@
 		createLegendLusal();
 		createLegendSEV();
 		createLegendSEMAF();
-		createLegendLINK();
+		createLegendCategoria();
 	</script>
 </body>
 
