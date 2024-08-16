@@ -19,7 +19,7 @@ function getColorValor(VALOR) {
     return {
       color: color,
       weight: weight,
-      opacity: 0.9,
+      opacity: 0.5,
       dashArray: "1",
       fillOpacity: 0.9,
     };
@@ -82,6 +82,7 @@ function valor_pop(feature, layer) {
         "<div id='Estilo3a'>" +
         "<b>  </b>" + feature.properties.VALOR + "<br>" +
          "</div>";
+
     layer.bindPopup(popupContent);
 
 }
