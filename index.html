@@ -63,7 +63,7 @@
 	<script type="text/javascript" src="data/valor_delsuelo.js"></script>
 	<!-- <script type="text/javascript" src="data/cat_ds.js"></script> -->
 	<script type="text/javascript" src="data/styleCOD.js"></script>
-	<script type="text/javascript" src="data/catastros_categoria_valor.js"></script>
+	<!-- <script type="text/javascript" src="data/catastros.js"></script> -->
 	<script type="text/javascript" src="data/mono.js"></script>
 
 
@@ -260,26 +260,26 @@
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 		});
 		
-		var CatastroCategoria = L.geoJson(catastros, {
-			style: {
-				fillColor: '#11101007',
-				weight: 0.5,
-				opacity: 0.7,
-				color: 'black',
-				dashArray: '0.5',
-				fillOpacity: 0.7,
-			} ,
-		//	style: styleVALOR,
-			onEachFeature :catastros_pop,
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
-		});
+		// var CatastroCategoria = L.geoJson(catastros, {
+		// 	// style: {
+		// 	// 	fillColor: '#11101007',
+		// 	// 	weight: 0.5,
+		// 	// 	opacity: 0.7,
+		// 	// 	color: 'black',
+		// 	// 	dashArray: '0.5',
+		// 	// 	fillOpacity: 0.7,
+		// 	// } ,
+		// //	style: styleVALOR,
+		// 	onEachFeature :catastros_pop,
+		// 	attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		//});
 		
 		//mapa//
 		var map = L.map('map', {
 			center: [-24.790195501692253, -65.42084230775552],
 			zoom: 12,
 			zoomControl: false,
-			layers: [argenmap,barrio,CatastroCategoria]
+			layers: [argenmap,barrio]
 
 		});
 
@@ -439,24 +439,22 @@
 		map.addControl(panelLayers);
 
 //buscador de catastros
-var searchControl = new L.Control.Search({
-			layer: CatastroCategoria,
-			propertyName: 'CATASTRO',
-			circleLocation: false,
-			position: 'topright',
-			collapsed: true
-		});
-		searchControl.on('search_locationfound', function (e) {
-			e.layer.setStyle({ fillColor: '#3f0', color: '#0f0' });
-		})
-			.on('search_collapsed', function (e) {
-				barrio.eachLayer(function (layer) { //restauramos el color del elemento
-					barrio.resetStyle(layer);
-				});
-			});
-		map.addControl(searchControl);
-
-
+// var searchControl = new L.Control.Search({
+// 			layer: CatastroCategoria,
+// 			propertyName: 'CATASTRO',
+// 			circleLocation: false,
+// 			position: 'topright',
+// 			collapsed: true
+// 		});
+// 		searchControl.on('search_locationfound', function (e) {
+// 			e.layer.setStyle({ fillColor: '#3f0', color: '#0f0' });
+// 		})
+// 			.on('search_collapsed', function (e) {
+// 				barrio.eachLayer(function (layer) { //restauramos el color del elemento
+// 					barrio.resetStyle(layer);
+// 				});
+// 			});
+// 		map.addControl(searchControl);
 
 		//fullsrcreen
 		var fullscreen = L.control.fullscreen({
