@@ -378,15 +378,7 @@
 		{
 		group: "Zonificación Propuesta",
 		collapsed: false,
-		layers: [{
-
-	
-			layer: EjesCategoria,
-			name: "<b> Categorías",
-			transparent: true,
-			opacity: 0.9,
-			active: true,
-		},
+		layers: [
 		{
 			layer: Valordelsuelo,
 			name: "<b> Valor del Suelo",
@@ -394,6 +386,16 @@
 			opacity: 0.9,
 			active: false,
 		},
+			{
+
+	
+			layer: EjesCategoria,
+			name: "<b> Categorías (145)",
+			transparent: true,
+			opacity: 0.9,
+			active: true,
+		},
+		
 		// {
 		// 	layer: CatastroCategoria,
 		// 	name: "<b> Catastros",
@@ -477,7 +479,7 @@
 		createLegendLusal();
 		createLegendSEV();
 		createLegendSEMAF();
-		createLegendCategoria();
+		// createLegendCategoria();
 		createLegendVALOR();
 	</script>
 </body>
