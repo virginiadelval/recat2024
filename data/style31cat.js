@@ -1,4 +1,4 @@
-// categorias: 145 Categotiras
+// categorias: de 145 Categotiras a 32 categoria
 function getColorCategoria31(COD_LINK) {
     switch (COD_LINK) {
         case '102030415060': return { color: '#E4DFEC', category: '1' };
@@ -150,7 +150,6 @@ function getColorCategoria31(COD_LINK) {
     }
 }
 
-
 function styleCategoria31(feature) {
     const { color } = getColorCategoria31(feature.properties.COD_LINK);
     return {
@@ -172,151 +171,38 @@ function createLegendCategoria31() {
 
         // Array con los estilos y sus etiquetas correspondientes
         var styles = [
-            { label: "Categorias", color: "" },
+
             { label: "1", color: "#E4DFEC" },
             { label: "2", color: "#CCC0DA" },
-            { label: "3", color: "#B1A0C7" },
-            { label: "3", color: "#B1A0C7" },
-            { label: "3", color: "#B1A0C7" },
-            { label: "4", color: "#60497A" },
+            { label: "3", color: "#B1A0C7" },     
             { label: "4", color: "#60497A" },
             { label: "5", color: "#403151" },
             { label: "6", color: "#8064A2" },
             { label: "7", color: "#EBF1DE" },
             { label: "8", color: "#D8E4BC" },
             { label: "9", color: "#C4D79B" },
-            { label: "9", color: "#C4D79B" },
-            { label: "9", color: "#C4D79B" },
-            { label: "9", color: "#C4D79B" },
-            { label: "9", color: "#C4D79B" },
-            { label: "10", color: "#76933C" },
-            { label: "10", color: "#76933C" },
             { label: "10", color: "#76933C" },
             { label: "11", color: "#4F6228" },
             { label: "12", color: "#C4D79B" },
             { label: "13", color: "#FCD5B4" },
             { label: "14", color: "#FABF8F" },
             { label: "15", color: "#E26B0A" },
-            { label: "15", color: "#E26B0A" },
-            { label: "15", color: "#E26B0A" },
             { label: "16", color: "#974706" },
-            { label: "16", color: "#974706" },
-            { label: "17", color: "#FABF8F" },
-            { label: "17", color: "#FABF8F" },
-            { label: "17", color: "#FABF8F" },
             { label: "17", color: "#FABF8F" },
             { label: "18", color: "#FDE9D9" },
             { label: "19", color: "#F79646" },
-            { label: "20", color: "#DAEEF3" },
-            { label: "20", color: "#DAEEF3" },
-            { label: "21", color: "#B7DEE8" },
+            { label: "20", color: "#DAEEF3" },         
+            { label: "21", color: "#B7DEE8" },           
             { label: "22", color: "#92CDDC" },
-            { label: "22", color: "#92CDDC" },
-            { label: "22", color: "#92CDDC" },
-            { label: "22", color: "#92CDDC" },
-            { label: "22", color: "#92CDDC" },
-            { label: "22", color: "#92CDDC" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "23", color: "#31869B" },
-            { label: "24", color: "#215967" },
-            { label: "24", color: "#215967" },
-            { label: "24", color: "#215967" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "25", color: "#92CDDC" },
-            { label: "26", color: "#B7DEE8" },
-            { label: "26", color: "#B7DEE8" },
-            { label: "26", color: "#B7DEE8" },
-            { label: "26", color: "#B7DEE8" },
-            { label: "27", color: "#DDD9C4" },
-            { label: "27", color: "#DDD9C4" },
+            { label: "23", color: "#31869B" },           
+            { label: "24", color: "#215967" },         
+            { label: "25", color: "#92CDDC" },         
+            { label: "26", color: "#B7DEE8" },           
+            { label: "27", color: "#DDD9C4" },           
             { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "28", color: "#C4BD97" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "29", color: "#948A54" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "30", color: "#494529" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "31", color: "#C4BD97" },
-            { label: "32", color: "#31869B" },
+            { label: "29", color: "#948A54" },          
+            { label: "30", color: "#494529" },          
+            { label: "31", color: "#C4BD97" },          
             { label: "32", color: "#31869B" }
         ];
         // Genera el contenido HTML de la leyenda
@@ -344,3 +230,168 @@ function createLegendCategoria31() {
   // Escucha el cambio de estado de la capa
   map.on("overlayadd overlayremove", toggleLegend);
 }
+
+
+
+function categoria31_pop(feature, layer) {
+    let tipoCalle;
+    if (feature.properties.COD_CALLE === 10) {
+      tipoCalle = ' Asfalto/Hormigón/Adoquín';
+    } else if (feature.properties.COD_CALLE === 11) {
+      tipoCalle = ' Tierra con cordón';
+    } else if (feature.properties.COD_CALLE === 12) {
+      tipoCalle = ' Tierra sin cordón';
+    } else {
+      tipoCalle = ' Desconocido';
+    }
+  
+    let tipoRecol;
+    if (feature.properties.COD_RECOL === 20) {
+      tipoRecol = ' Servicio Especial';
+    } else if (feature.properties.COD_RECOL === 21) {
+      tipoRecol = ' Recolección 6 veces';
+    } else if (feature.properties.COD_RECOL === 22) {
+      tipoRecol = ' Contenedores';
+    } else if (feature.properties.COD_RECOL === 23) {
+      tipoRecol = ' Sin servicios';
+    } else {
+      tipoRecol = ' Desconocido'; 
+    }
+    let tipoBarrido;
+    if (feature.properties.COD_BARRIDO === 30) {
+      tipoBarrido = ' Servicio Especial';
+    } else if (feature.properties.COD_BARRIDO === 31) {
+      tipoBarrido = ' Barrido 6 veces';
+    } else if (feature.properties.COD_BARRIDO === 32) {
+      tipoBarrido = ' Barrido 3 veces';
+    } else if (feature.properties.COD_BARRIDO === 33) {
+      tipoBarrido = ' Barrido 1 o 2 veces';
+    }else if (feature.properties.COD_BARRIDO === 34) {
+      tipoBarrido = ' Sin servicios';
+    }
+     else {
+      tipoBarrido = ' Desconocido'; 
+    }
+  
+    let tipoLuz;
+    if (feature.properties.COD_LUSAL === 40) {
+      tipoLuz = ' Con Luces LED';
+    } else if (feature.properties.COD_LUSAL === 41) {
+      tipoLuz = ' No LED';
+    } else if (feature.properties.COD_LUSAL === 42) {
+      tipoLuz = ' Sin servicios';
+    }
+     else {
+      tipoLuz = ' Desconocido'; 
+    }
+    let tipoEV;
+    if (feature.properties.COD_SEV === 50) {
+      tipoEV = ' Con Espacio Verde';
+    } else if (feature.properties.COD_SEV === 51) {
+      tipoEV = ' Sin Espacio Verde';
+    } 
+     else {
+      tipoEV = ' Desconocido'; 
+    }
+    let tipoSEM;
+    if (feature.properties.COD_SEMAF === 60) {
+      tipoSEM = ' Con Semáforo';
+    } else if (feature.properties.COD_SEMAF === 61) {
+      tipoSEM = ' Sin Semáforo';
+    } 
+     else {
+      tipoSEM = ' Desconocido'; 
+    }
+    let codCategoria;
+    let codLink = feature.properties.COD_LINK;
+        if (codLink === '102030405060') {
+            codCategoria = '2';
+        } else if (codLink === '102030415160' || codLink === '102030415061' || codLink === '102030425060') {
+            codCategoria = '3';
+        } else if (codLink === '102030405160' || codLink === '102030405061') {
+            codCategoria = '4';
+        } else if (codLink === '102030415161') {
+            codCategoria = '5';
+        } else if (codLink === '102030405161') {
+            codCategoria = '6';
+        } else if (codLink === '102131415060') {
+            codCategoria = '7';
+        } else if (codLink === '102131405060') {
+            codCategoria = '8';
+        } else if (codLink === '102131415061' || codLink === '102131415160' || codLink === '102131425060' || codLink === '102131405160' || codLink === '102131405061') {
+            codCategoria = '9';
+        } else if (codLink === '102131415161' || codLink === '102131425160' || codLink === '102131425061') {
+            codCategoria = '10';
+        } else if (codLink === '102131405161') {
+            codCategoria = '11';
+        } else if (codLink === '102131425161') {
+            codCategoria = '12';
+        } else if (codLink === '102132415060') {
+            codCategoria = '13';
+        } else if (codLink === '102132405060') {
+            codCategoria = '14';
+        } else if (codLink === '102132415061' || codLink === '102132415160' || codLink === '102032405061') {
+            codCategoria = '15';
+        } else if (codLink === '102132405061' || codLink === '102132405160') {
+            codCategoria = '16';
+        } else if (codLink === '102132415161' || codLink === '102132425061' || codLink === '102132425160' || codLink === '102332425160') {
+            codCategoria = '17';
+        } else if (codLink === '102132405161') {
+            codCategoria = '18';
+        } else if (codLink === '102132425161') {
+            codCategoria = '19';
+        } else if (codLink === '102133415060' || codLink === '102233415060') {
+            codCategoria = '20';
+        } else if (codLink === '102133405060') {
+            codCategoria = '21';
+        } else if (codLink === '102133415061' || codLink === '102133415160' || codLink === '102133425060' || codLink === '102233415061' || codLink === '102133405061' || codLink === '102133405160') {
+            codCategoria = '22';
+        } else if (codLink === '102133415161' || codLink === '102133425061' || codLink === '102133425160' || codLink === '102233415161' || codLink === '102233425061' || codLink === '102333405061' || codLink === '102333405160' || codLink === '102133405161' || codLink === '112133415061' || codLink === '122133415061' || codLink === '122133415160' || codLink === '122133425060' || codLink === '122233415061' || codLink === '122333405060') {
+            codCategoria = '23';
+        } else if (codLink === '102333415060' || codLink === '102333415160' || codLink === '102333405060') {
+            codCategoria = '24';
+        } else if (codLink === '102333415061' || codLink === '102133425161' || codLink === '102333405161' || codLink === '102333415161' || codLink === '102233425161' || codLink === '102333425061' || codLink === '102333425160' || codLink === '112133425061' || codLink === '112133405061' || codLink === '112133415161' || codLink === '112133405161' || codLink === '122233415161' || codLink === '122333415061' || codLink === '122133425061' || codLink === '122133405161' || codLink === '122133415161') {
+            codCategoria = '25';
+        } else if (codLink === '102333425161' || codLink === '112133425161' || codLink === '122133425161' || codLink === '122333415161') {
+            codCategoria = '26';
+        } else if (codLink === '102134415060' || codLink === '102134405060') {
+            codCategoria = '27';
+        } else if (codLink === '102134415061' || codLink === '102134425060' || codLink === '102134405061' || codLink === '102134405160' || codLink === '102134415160' || codLink === '102234415061' || codLink === '102334405060' || codLink === '102334415060' || codLink === '112134415060' || codLink === '112134405060' || codLink === '122134415060') {
+            codCategoria = '28';
+        } else if (codLink === '102334415061' || codLink === '102334415160' || codLink === '102134415161' || codLink === '102134425061' || codLink === '102134425160' || codLink === '102234415161' || codLink === '102334405061' || codLink === '102334405160' || codLink === '112134415160' || codLink === '112134415061' || codLink === '112234415061' || codLink === '112334405060' || codLink === '122134415160' || codLink === '122134415061' || codLink === '122234415061' || codLink === '102134405161' || codLink === '122134405160' || codLink === '112134405061' || codLink === '122134405061') {
+            codCategoria = '29';
+        } else if (codLink === '102334415161' || codLink === '102334425061' || codLink === '102334425160' || codLink === '112034415161' || codLink === '122334415061' || codLink === '112334415061' || codLink === '102134425161' || codLink === '102234425161' || codLink === '112234415161' || codLink === '112134425061' || codLink === '122134425061' || codLink === '112134415161' || codLink === '102334405161' || codLink === '112334405061' || codLink === '112134425160' || codLink === '122134415161' || codLink === '122234415161' || codLink === '112134405161' || codLink === '122134405161') {
+            codCategoria = '30';
+        } else if (codLink === '102334425161' || codLink === '112334415161' || codLink === '112334425061' || codLink === '112334425160' || codLink === '112134425161' || codLink === '122134425161' || codLink === '122234425161' || codLink === '122334405161' || codLink === '112234425161' || codLink === '112334405161' || codLink === '122334415161' || codLink === '122334425061') {
+            codCategoria = '31';
+        } else if (codLink === '112334425161' || codLink === '122334425161') {
+            codCategoria = '32';
+        } else {
+            codCategoria = '-';
+        }
+    
+        
+    var popupContent31 =
+    "<b>Código de COD_LINK (145) : </b>" + feature.properties.COD_LINK + "<br>" +
+    "<b>Agrupación de Categoria (32) : </b>" + codCategoria + "<br>" +
+    "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='2' width='100%' />" +
+    "<div id='Estilo3a'>" +
+    
+    "<b>Tipo de Calle: </b>" + tipoCalle + "<br>" +
+  "<b>Recolección: </b>" + tipoRecol+ "<br>" +
+   "<b>Barrido: </b>" + tipoBarrido + "<br>" +
+   "<b>Luminaria: </b>" + tipoLuz + "<br>" +
+   "<b>Servicio en Espacios Verdes: </b>" + tipoEV + "<br>" +
+   "<b>Semáforo: </b>" + tipoSEM + "<br>" +
+  "</div>";
+
+layer.bindPopup(popupContent31);
+}
+
+  
+  
+  function eventOpenPopup(e) {
+  var layer = e.layer;
+  layer.closePopup();
+  layer.openPopup();
+  }

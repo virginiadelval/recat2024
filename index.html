@@ -119,8 +119,6 @@
 			background-size: 26px 26px;
 		}
 
-
-
 		.leaflet-container:-ms-fullscreen {
 			width: 100% !important;
 			height: 100% !important;
@@ -147,34 +145,40 @@
 			left: 0px !important;
 			z-index: 99999;
 		}
-		/* Estilos CSS para la leyenda */
+
+/* Estilos CSS para la leyenda */
 .info.legend {
     background: white;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc;	
     border-radius: 5px;
     font-size: 12px;
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en filas */
-    justify-content: space-between; /* Espacio equitativo entre los elementos */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Crea 5 columnas */
+    grid-gap: 0px; /* Espacio entre los elementos */
+    align-items: end;
+    text-align: right;
 }
 
 /* Estilos para los círculos de colores en la leyenda */
 .info.legend i {
     width: 10px;
     height: 10px;
-    display: inline-block;
+    display: -moz-grid-line;
     border-radius: 50%;
     margin-right: 5px;
 }
 
-/* Estilos para los elementos de la leyenda (cada uno ocupa parte igual) */
-.info.legend .legend-item {
-    flex-basis: calc(33.33% - 10px); /* Cada elemento ocupa 1/3 del ancho, con espacio entre ellos */
-    margin-bottom: 5px;
+/* Estilos para los elementos de la leyenda */
+.legend-item {
+    display: inline;
+    align-items: center;
+    justify-content: left;
+    flex-direction: column-reverse; /* Organiza los números debajo de los círculos */
+    font-size: 10px; /* Ajusta el tamaño de fuente si es necesario */
 }
 
-	</style>
+</style>
 
 </head>
 
@@ -288,7 +292,7 @@
 
 		var EjesCategoria31 = L.geoJson(categoria, {
 			style: styleCategoria31,
-			onEachFeature: categoria_pop,
+			onEachFeature: categoria31_pop,
 			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 		});
 
@@ -509,6 +513,37 @@
 				position: 'topright',
 			}
 		}).addTo(map);
+
+	//geolocalizacion
+
+		// add location control to global name space for testing only
+		// on a production site, omit the "lc = "!
+		lc = L.control
+		.locate({
+			setView: "untilPanOrZoom",
+			/** Keep the current map zoom level when setting the view and only pan. */
+			keepCurrentZoomLevel: false,
+			/** After activating the plugin by clicking on the icon, zoom to the selected zoom level, even when keepCurrentZoomLevel is true. Set to 'false' to disable this feature. */
+			initialZoomLevel: false,
+			position: 'topleft',
+			strings: {
+				title: "Ud. está en este punto",
+				metersUnit: "metros",
+				feetUnit: "feet",
+				popup: "<b>Radio de localización es de  ({distance} {unit} ).",
+			   outsideMapBoundsMsg: "No se encuentran datos en este radio"
+		   },
+		   locateOptions: {
+			   enableHighAccuracy: true,
+		   maxZoom: Infinity,
+			   watch: true, // if you overwrite this, visualization cannot be updated
+				setView: true // have to set this to false because we have to
+			// do setView manually
+
+			},
+	   cacheLocation: true,
+	   }).addTo(map);
+
 		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
 		L.control.zoom({ position: 'topright' }).addTo(map);
 
