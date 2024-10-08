@@ -27,13 +27,7 @@
 	<!-- <script src="src/L.Control.HtmlLegend.js"></script> -->
 	<script src="dist/leaflet-search.js"></script>
 
-	<!-- nuevos estilos -->
-	<!--Estilos de boostrap para iconos  https://github.com/masajid390/BeautifyMarker/blob/master/index.html -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-		  rel="stylesheet">
-	<link rel="stylesheet" href="/dist/leaflet-beautify-marker-icon.css">
-	<script src="dist/leaflet-beautify-marker-icon.js"></script>
+
  <!-- panel layer -->
 	<script src="dist/leaflet-panel-layers.src.js"></script>
 	<script src="dist/leaflet-panel-layers.js"></script>
@@ -55,11 +49,15 @@
 
 	<!-- en la Carpeta DATA estan los js como capas-->
 	<script type="text/javascript" src="data/barrio.js"></script>
-	<script type="text/javascript" src="data/ferias_Oct2024.js"></script>
+	<script type="text/javascript" src="data/valor_delsuelo.js"></script>
+	<script type="text/javascript" src="data/zonas_II.js"></script>
+	<script type="text/javascript" src="data/zonas_tgi.js"></script>
+	<script type="text/javascript" src="data/ejes.js"></script>
+	<script type="text/javascript" src="data/styleCOD.js"></script>
+	<script type="text/javascript" src="data/style31cat.js"></script>
 
-	
+	<script type="text/javascript" src="data/mono.js"></script>
 
-	
 
 
 	<style>
@@ -177,6 +175,8 @@
     font-size: 10px; /* Ajusta el tamaño de fuente si es necesario */
 }
 
+
+
 </style>
 
 </head>
@@ -184,200 +184,316 @@
 <body>
 	<div id="map">
 
-		<div class="info legend">
-			<div class="legend-item">
-				<i style="background: #E4DFEC"></i> 1
-			</div>
-			<div class="legend-item">
-				<i style="background: #CCC0DA"></i> 2
-			</div>
-			<div class="legend-item">
-				<i style="background: #B1A0C7"></i> 3
-			</div>
-			<div class="legend-item">
-				<i style="background: #A9D18E"></i> 4
-			</div>
-			<div class="legend-item">
-				<i style="background: #F4B084"></i> 5
-			</div>
-			<div class="legend-item">
-				<i style="background: #FFD966"></i> 6
-			</div>
-		</div>
-	</div>
 
 
 
 	<script>
 		var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 
-		});
+	});
 
-		var google = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-			opacity: 1.0,
-			attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>', attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	var google = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+		opacity: 1.0,
+		attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>', attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 
-		});
+	});
 
-		var argenmap = L.tileLayer(
-			'https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
-			opacity: 1.0,
-			attribution: '<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2"  target="_blank"> ArgenMap </a>',
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	var argenmap = L.tileLayer(
+		'https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+		opacity: 1.0,
+		attribution: '<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2"  target="_blank"> ArgenMap </a>',
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
 
-		});
-		//VARIABLES //
-		var barrio = L.geoJson(barrio, {
-			style: {
-				fillColor: '#5252521D',
-				weight: 1.5,
-				opacity: 0.7,
-				color: '#015CB4',
-				dashArray: '0.5',
-				fillOpacity: 0.7,
+	});
+	//VARIABLES //
+	var barrio = L.geoJson(barrio, {
+		style: {
+			fillColor: '#11101007',
+			weight: 1,
+			opacity: 0.7,
+			color: 'black',
+			dashArray: '0.5',
+			fillOpacity: 0.7,
+		},
+		// onEachFeature: barrios_pop,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>'
+	});
+	var ZonaTGI = L.geoJson(TGI, {
+		style: styleTGI,
+		onEachFeature: tgi_pop,
+	});
+
+	var ZonaII = L.geoJson(II, {
+		style: styleII,
+		onEachFeature: ii_pop,
+	}
+	);
+
+	var EjesCalles = L.geoJson(ejes, {
+		style: styleCalles,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+	var EjesRecoleccion = L.geoJson(ejes, {
+		style: styleRecol,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+
+	var EjesBarrido = L.geoJson(ejes, {
+		style: styleBarrido,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+
+	var EjesLusal = L.geoJson(ejes, {
+		style: styleLusal,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+	var EjesSEV = L.geoJson(ejes, {
+		style: styleSEV,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+	var EjesSEMAF = L.geoJson(ejes, {
+		style: styleSEMAF,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+	var EjesCategoria = L.geoJson(categoria, {
+		style: styleCategoria,
+		onEachFeature: categoria_pop,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+	var Valordelsuelo = L.geoJson(valorsuelo, {
+		style: styleVALOR,
+		onEachFeature: valor_pop,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+
+	var EjesCategoria31 = L.geoJson(categoria, {
+		style: styleCategoria31,
+		onEachFeature: categoria_pop,
+		attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	});
+
+	// var CatastroCategoria = L.geoJson(catastros, {
+	// 	// style: {
+	// 	// 	fillColor: '#11101007',
+	// 	// 	weight: 0.5,
+	// 	// 	opacity: 0.7,
+	// 	// 	color: 'black',
+	// 	// 	dashArray: '0.5',
+	// 	// 	fillOpacity: 0.7,
+	// 	// } ,
+	// //	style: styleVALOR,
+	// 	onEachFeature :catastros_pop,
+	// 	attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>',
+	//});
+
+	//mapa//
+	var map = L.map('map', {
+		center: [-24.790195501692253, -65.42084230775552],
+		zoom: 12,
+		zoomControl: false,
+		layers: [argenmap, barrio]
+
+	});
+
+	// Grupos de capas
+	var baseLayers = [{
+		name: "ArgenMap (Gris)",
+		layer: argenmap
+	},
+	{
+		name: "Open Street Map",
+		layer: osm,
+	},
+	{
+		name: "Google Satelite",
+		layer: google
+	},
+	];
+
+	var overlayMaps = [{
+
+		group: "Zonificación Actual",
+		collapsed: true,
+		layers: [
+			// 	{
+			// 	layer: barrio,
+			// 	name: "<b>Barrios de la Ciudad",
+			// 	transparent: true,
+			// 	opacity: 0.5,
+			// },
+			{
+				layer: ZonaTGI,
+				name: "<b> Zonificación TGI",
+				transparent: true,
+				opacity: 0.9,
+				active: false,
+
 			},
-			// onEachFeature: barrios_pop,
-			attribution: '<a href="https://idemsa.municipalidadsalta.gob.ar/">IDEMSa</a>'
-		});
-		var FeriasBarriales = L.geoJson(ferias, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.BeautifyIcon.icon(styleFerias(feature))  // L.BeautifyIcon.icon genera el icono
-        });
-    },
-    onEachFeature: feria_pop,
-});
-		
+			{
+				layer: ZonaII,
+				name: "<b> Zonificación II",
+				transparent: true,
+				opacity: 0.9,
+				active: false,
 
-	
-		//mapa//
-		var map = L.map('map', {
-			center: [-24.790195501692253, -65.42084230775552],
-			zoom: 12,
-			zoomControl: false,
-			layers: [argenmap, barrio, FeriasBarriales]
+			}]
+	}
 
-		});
+		,
+	{
+		group: "Ejes con servicios",
+		collapsed: true,
+		layers: [{
 
-		// Grupos de capas
-		var baseLayers = [{
-			name: "ArgenMap (Gris)",
-			layer: argenmap
+			layer: EjesCalles,
+			name: "<b> Ejes de calles",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
 		},
 		{
-			name: "Open Street Map",
-			layer: osm,
+			layer: EjesRecoleccion,
+			name: "<b> Recolección",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
 		},
 		{
-			name: "Google Satelite",
-			layer: google
+			layer: EjesBarrido,
+			name: "<b> Barridos",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
 		},
-		];
-
-		var overlayMaps = [{
-
-			group: "Ferrias de la Ciudad",
-			collapsed: false,
-			layers: [
-				// 	{
-				// 	layer: barrio,
-				// 	name: "<b>Barrios de la Ciudad",
-				// 	transparent: true,
-				// 	opacity: 0.5,
-				// },
-				{
-					layer: FeriasBarriales,
-					name: "<b> Ferias",
-					transparent: true,
-					opacity: 0.9,
-					active: false,
-
-				},
-				]
+		{
+			layer: EjesLusal,
+			name: "<b> Luminarias",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesSEV,
+			name: "<b> Servicio en <br>Espacios verdes",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
+		},
+		{
+			layer: EjesSEMAF,
+			name: "<b> Semáforo",
+			transparent: true,
+			opacity: 0.9,
+			active: false,
 		}
-
-	
-		];
-
-		//panel de control agregado//
-		var panelLayersBase = new L.Control.PanelLayers(baseLayers, null, {
-			compact: true,
-			//collapsed: true,
-			collapsibleGroups: true,
-			position: 'topleft',
-		});
-
-		//panel de control agregado//
-		var panelLayers = new L.Control.PanelLayers(null, overlayMaps, {
-			compact: true,
-			collapsed: false,
-			collapsibleGroups: true,
-			position: 'topleft',
-		});
-
-		// logo
-		L.Control.Watermark = L.Control.extend({
-			onAdd: function (map) {
-				var img = L.DomUtil.create('img');
-				img.src = 'images/Logo Azul Principal.png';
-				img.style.width = '20vw',
-					img.style.height = 'auto';
-				return img;
+		]
+	},
+	{
+		group: "Zonificación Propuesta",
+		collapsed: false,
+		layers: [
+			{
+				layer: Valordelsuelo,
+				name: "<b> Valor del Suelo",
+				transparent: true,
+				opacity: 0.9,
+				active: false,
 			},
-			onRemove: function (map) { },
-		});
-		L.control.watermark = function (opts) { return new L.Control.Watermark(opts); }
-		L.control.watermark(position = 'topleft').addTo(map);
-		map.addControl(panelLayersBase);
-		map.addControl(panelLayers);
+			{
 
-		//fullsrcreen
-		var fullscreen = L.control.fullscreen({
-			fullscreenControl: true,
-			fullscreenControlOptions: {
-				title: "Mostrar en pantalla completa",
-				titleCancel: "Cancelar el modo pantalla completa",
-				position: 'topright',
-			}
-		}).addTo(map);
 
-	//geolocalizacion
-
-		// add location control to global name space for testing only
-		// on a production site, omit the "lc = "!
-		lc = L.control
-		.locate({
-			setView: "untilPanOrZoom",
-			/** Keep the current map zoom level when setting the view and only pan. */
-			keepCurrentZoomLevel: false,
-			/** After activating the plugin by clicking on the icon, zoom to the selected zoom level, even when keepCurrentZoomLevel is true. Set to 'false' to disable this feature. */
-			initialZoomLevel: false,
-			position: 'topleft',
-			strings: {
-				title: "Ud. está en este punto",
-				metersUnit: "metros",
-				feetUnit: "feet",
-				popup: "<b>Radio de localización es de  ({distance} {unit} ).",
-			   outsideMapBoundsMsg: "No se encuentran datos en este radio"
-		   },
-		   locateOptions: {
-			   enableHighAccuracy: true,
-		   maxZoom: Infinity,
-			   watch: true, // if you overwrite this, visualization cannot be updated
-				setView: true // have to set this to false because we have to
-			// do setView manually
-
+				layer: EjesCategoria,
+				name: "<b> Categorías (145)",
+				transparent: true,
+				opacity: 0.9,
+				active: false,
 			},
-	   cacheLocation: true,
-	   }).addTo(map);
+			{
 
-		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
-		L.control.zoom({ position: 'topright' }).addTo(map);
+
+				layer: EjesCategoria31,
+				name: "<b> Categorías (32)",
+				transparent: true,
+				opacity: 0.9,
+				active: true,
+			},
+
+			// {
+			// 	layer: CatastroCategoria,
+			// 	name: "<b> Catastros",
+			// 	transparent: true,
+			// 	opacity: 0.9,
+			// 	active: false,
+			// }
+		]
+	},
+
+	];
+
+	//panel de control agregado//
+	var panelLayersBase = new L.Control.PanelLayers(baseLayers, null, {
+		compact: true,
+		//collapsed: true,
+		collapsibleGroups: true,
+		position: 'topleft',
+	});
+
+	//panel de control agregado//
+	var panelLayers = new L.Control.PanelLayers(null, overlayMaps, {
+		compact: true,
+		collapsed: false,
+		collapsibleGroups: true,
+		position: 'topleft',
+	});
+
+	// logo
+	L.Control.Watermark = L.Control.extend({
+		onAdd: function (map) {
+			var img = L.DomUtil.create('img');
+			img.src = 'images/Logo Azul Principal.png';
+			img.style.width = '20vw',
+				img.style.height = 'auto';
+			return img;
+		},
+		onRemove: function (map) { },
+	});
+	L.control.watermark = function (opts) { return new L.Control.Watermark(opts); }
+	L.control.watermark(position = 'topleft').addTo(map);
+	map.addControl(panelLayersBase);
+	map.addControl(panelLayers);
+	//fullsrcreen
+	var fullscreen = L.control.fullscreen({
+		fullscreenControl: true,
+		fullscreenControlOptions: {
+			title: "Mostrar en pantalla completa",
+			titleCancel: "Cancelar el modo pantalla completa",
+			position: 'topright',
+		}
+	}).addTo(map);
+	L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
+	L.control.zoom({ position: 'topright' }).addTo(map);
+
+	//leyenda al mapa
+	createLegendTGI();
+	createLegendII();
+	createLegendCalles();
+	createLegendRecol();
+	createLegendBarrido();
+	createLegendLusal();
+	createLegendSEV();
+	createLegendSEMAF();
+	// createLegendCategoria();
+	createLegendVALOR();
+	createLegendCategoria31();
 
 
 	</script>
 </body>
 
 </html>
+
+
+
+	
